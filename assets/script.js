@@ -107,11 +107,10 @@ function getUVI(lattitude, longitude){
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-
-        // Pull our uvindex data from the JSON, store in variable uvi.
+  
         var uvi = parseFloat(response.value);
         console.log(uvi);
-        // Push uvi to the DOM.
+    
         $("#uvindex").html(uvi);
 
         if(uvi >= 0 && uvi <= 2){

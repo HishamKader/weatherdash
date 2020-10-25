@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: coral;
 }
 h1,h2,h3,h4,h5 {
     font-family: 'ariel' 'sans-serif';
@@ -10,6 +11,10 @@ section {
 }
 nav form {
     color: white;
+}
+.navbar-brand{
+    margin-left: 95%;
+    font-size: 30px;
 }
 .form-check-input {
     margin: 0 10px !important;
