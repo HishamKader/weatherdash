@@ -1,0 +1,75 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+h1,h2,h3,h4,h5 {
+    font-family: 'Carter One', cursive;
+}
+section {
+    padding-top: 10px;
+}
+nav form {
+    color: white;
+}
+.form-check-input {
+    margin: 0 10px !important;
+}
+nav h3 {
+    color: white;
+}
+#cityName {
+    display: inline;
+    margin-right: 10px;
+
+}
+.currentWeather {
+    padding-top: 30px;
+}
+.user-section {
+    background-color: #f1eded;
+    border-radius: 10px;
+}
+.display-section {
+    border: 1px solid #f1eded;
+    border-radius: 10px;
+}
+body i {
+    margin-right: 10px;
+}
+#forecastDays {
+    margin: 0 auto;
+}
+#day1,
+#day2,
+#day3,
+#day4,
+#day5
+{
+    background-color: #34495e;
+    padding: 5px 25px;
+    margin: 10px;
+    border-radius: 10px;
+    color: #fff;
+    -webkit-box-shadow: 0 5px 5px 0 rgb(145, 143, 143);  
+    -moz-box-shadow:    0 5px 5px 0 rgb(145, 143, 143);  
+    box-shadow:         0 5px 5px 0 rgb(145, 143, 143); 
+    font-size: 12px;
+}
+
+.uvi {
+    padding: 5px;
+    border-radius: 14px;
+    color: white;
+}
+
+.severe {
+    background-color:#e74c3c;
+}
+
+.moderate {
+    background-color: #f39c12;
+}
+
+.favorable {
+    background-color: #27ae60;
+}
