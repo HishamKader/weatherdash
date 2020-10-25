@@ -71,3 +71,5 @@ function setWeather(city) {
         $("#min").html(response.list[0].main.temp_min + " &#730" + unit);
 
         getDailyForecast(city);
+    }
+    
