@@ -73,24 +73,71 @@ function setWeather(city) {
         getDailyForecast(city);
 
         function getDailyForecast(city) {
-            
+
             $.ajax({
                 url: queryURL,
                 method: "GET"
             }).then(function (response) {
-                
+
                 $("#forecastDays").empty();
-                
+
                 for (var i = 0, j = 1; i < response.list.length, j <= 5; i += 8, j++) {
-                    
-                    var dateTime = convertDate(response.list[i].dt); 
+
+                    var dateTime = convertDate(response.list[i].dt);
                     var newDiv = $("<div>").attr("id", "day" + j);
                     var pTemp = $("<p>");
                     var pHumid = $("<p>");
                     var iconImage = $("<img>");
 
+                    newDiv.attr("class", "col-lg-2").appendTo("#forecastDays");
+                    newDiv.html("<h6>" + dateTime + "</h6>").appendTo(newDiv);
+                    pTemp.html('<i class="fas fa-thermometer-full"></i>' + response.list[i].main.temp + " &#730" + unit).appendTo(newDiv);
+                    pHumid.html('<i class="fas fa-smog"></i>' + response.list[i].main.humidity + "%").appendTo(newDiv);
+                    iconImage.attr("src", "http://openweathermap.org/img/w/" + response.list[i].weather[0].icon + ".png").appendTo(newDiv);
+
+                    $("#forecastDays").append(newDiv);
                 }
-            }
-        });
-    }
+            });
+        }
+    });
+}
+function getUVI(lattitude, longitude){
+    var queryURL = "https://api.openweathermap.org/data/2.5/uvi?lat="+lattitude+"&lon=" +longitude+"&appid=b774102802580c232f4e227fa165c18f";
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+
+        // Pull our uvindex data from the JSON, store in variable uvi.
+        var uvi = parseFloat(response.value);
+        console.log(uvi);
+        // Push uvi to the DOM.
+        $("#uvindex").html(uvi);
+
+        if(uvi >= 0 && uvi <= 2){
+            
+            $("#uvindex").removeClass();
+            $("#uvindex").addClass("uvi favorable");
+        }
+        else if(uvi > 2 && uvi <= 5){
+           
+            $("#uvindex").removeClass();
+            $("#uvindex").addClass("uvi moderate");
+
+        }
+        else if(uvi > 5 && uvi <= 10){
+           
+            $("#uvindex").removeClass();
+            $("#uvindex").addClass("uvi severe")
+        }
+
+    });
+}
+
+function convertDate(date) {
+    
+    var newDate = new Date(date * 1000);
+    var newDateFormat = newDate.toLocaleDateString();
+   
+    return newDateFormat;
 }
