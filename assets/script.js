@@ -71,5 +71,26 @@ function setWeather(city) {
         $("#min").html(response.list[0].main.temp_min + " &#730" + unit);
 
         getDailyForecast(city);
+
+        function getDailyForecast(city) {
+            
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                
+                $("#forecastDays").empty();
+                
+                for (var i = 0, j = 1; i < response.list.length, j <= 5; i += 8, j++) {
+                    
+                    var dateTime = convertDate(response.list[i].dt); 
+                    var newDiv = $("<div>").attr("id", "day" + j);
+                    var pTemp = $("<p>");
+                    var pHumid = $("<p>");
+                    var iconImage = $("<img>");
+
+                }
+            }
+        });
     }
-    
+}
