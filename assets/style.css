@@ -31,13 +31,21 @@ nav h3 {
     padding-top: 30px;
 }
 .user-section {
-    background-color: #f1eded;
+    background-color: #429e42;
+    border-radius: 5px;
 }
 .display-section {
     border: 1px solid #f1eded;
 }
 body i {
     margin-right: 10px;
+}
+#submitBtn {
+    background-color: rgb(3, 85, 218);
+    margin-left: 20px;
+}
+#submitBtn:hover {
+    background-color: rgba(3, 85, 218, 0.534);
 }
 #forecastDays {
     margin: 0 auto;
@@ -55,20 +63,3 @@ body i {
     font-size: 12px;
 }
 
-.uvi {
-    padding: 5px;
-    border-radius: 14px;
-    color: white;
-}
-
-.severe {
-    background-color:#e74c3c;
-}
-
-.moderate {
-    background-color: #f39c12;
-}
-
-.favorable {
-    background-color: #27ae60;
-}

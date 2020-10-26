@@ -109,7 +109,6 @@ function getUVI(lattitude, longitude){
     }).then(function (response) {
   
         var uvi = parseFloat(response.value);
-        console.log(uvi);
     
         $("#uvindex").html(uvi);
 
