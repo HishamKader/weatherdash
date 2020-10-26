@@ -33,6 +33,7 @@ nav h3 {
 .user-section {
     background-color: #429e42;
     border-radius: 5px;
+    cursor: pointer;
 }
 .display-section {
     border: 1px solid #f1eded;
