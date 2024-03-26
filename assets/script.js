@@ -5,13 +5,13 @@ var unit = "F";
 
 
 
-setWeather("Beirut");
+setWeather("New Jersey");
 
 
-$(".units").on("click", "input", function () {
+$(".units").on("click", "button", function () {
 
     unitSelected = $(this).attr("value");
-    if (unitSelected === "fahrenheit") {
+    if (unitSelected === "F˚") {
 
         isFahrenheit = true;
 
@@ -101,41 +101,77 @@ function setWeather(city) {
         }
     });
 }
-function getUVI(lattitude, longitude){
-    var queryURL = "https://api.openweathermap.org/data/2.5/uvi?lat="+lattitude+"&lon=" +longitude+"&appid=b774102802580c232f4e227fa165c18f";
+function getUVI(lattitude, longitude) {
+    var queryURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lattitude + "&lon=" + longitude + "&appid=b774102802580c232f4e227fa165c18f";
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-  
+
         var uvi = parseFloat(response.value);
-    
+
         $("#uvindex").html(uvi);
 
-        if(uvi >= 0 && uvi <= 2){
-            
+        if (uvi >= 0 && uvi <= 2) {
+
             $("#uvindex").removeClass();
             $("#uvindex").addClass("uvi favorable");
         }
-        else if(uvi > 2 && uvi <= 5){
-           
+        else if (uvi > 2 && uvi <= 5) {
+
             $("#uvindex").removeClass();
             $("#uvindex").addClass("uvi moderate");
 
         }
-        else if(uvi > 5 && uvi <= 10){
-           
+        else if (uvi > 5 && uvi <= 10) {
+
             $("#uvindex").removeClass();
             $("#uvindex").addClass("uvi severe")
         }
 
+        
     });
 }
 
+// function tempChange() {
+
+// var temp = parseFloat();
+
+
+// $("#temperature").html(temp);
+
+// if (temp > 0 && temp <= 56) {
+
+//     $("#temperature").removeClass();
+//     $("#temperature").addClass("temp cold")
+// }
+// else if (temp > 57 && temp <= 75) {
+
+//     $("#temperature").removeClass();
+//     $("#temperature").addClass("temp warm");
+
+// }
+// else if (temp >= 76 && temp <= 100) {
+
+//     $("#temperature").removeClass();
+//     $("#temperature").addClass("temp hot");
+// }
+// }
+
 function convertDate(date) {
-    
+
+    //  var options = {
+    //         weekday: "long"
+
+    //       };
+
     var newDate = new Date(date * 1000);
     var newDateFormat = newDate.toLocaleDateString();
-   
+
+
+
+    //   console.log(date.toLocaleString("de-DE", options));
+
     return newDateFormat;
 }
+
