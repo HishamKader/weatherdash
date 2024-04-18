@@ -8,107 +8,118 @@
     <meta name="Description" content="Enter your description here" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="assets/style.css">
     <title>Weather Dash</title>
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <ul class="navbar-nav">
-                <li class="nav-item">
+        <nav class="navbar">
+            <ul class="nav">
+                <li>
                     <h3 class="navbar-brand">Weather Dash</h3>
                 </li>
-            </ul>
-            <ul class="navbar-nav">
-                <div class="units" class="form-inline units">
-                    <button class="f-button" type="button" value="F˚" checked>F˚
-                </div>
-                <div class="units">
+                <li class="units" class="form-inline units">
+                    <button class="f-button" type="button" value="F˚">F˚
+                </li>
+                <li class="units">
                     <button class="c-button" type="button" value="C˚">C˚
-                </div>
+                </li>
             </ul>
+            <div class="dark-light">
+                <button id="dark-mode-toggle" class="bi bi-moon-stars-fill"></button>
+                <button id="light-mode-toggle" class="bi bi-sun-fill"></button>
+            </div>
         </nav>
-    </header>
 
-    <section class="currentWeather">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
+        <section class="currentWeather">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
 
-                    <form class="form-inline">
-                        <div class="form-group mb-2 ml-2">
-                            <input type="text" id="cityInput" class="form-control"
-                                placeholder="City, State"><br />
-                            <button id="submitBtn" type="submit" class="btn btn-dark">Search</button>
-                        </div>
-                    </form>
-
-                    <section class="user-section">
-                        <div class="cityPicker">
-                            <table class="cityList table table-striped table-hover" id="cityList">
-                                <tr>
-                                    <td>New Jersey</td>
-                                </tr>
-                                <tr>
-                                    <td>New York</td>
-                                </tr>
-                                <tr>
-                                    <td>Beirut</td>
-                                </tr>
-                                <tr>
-                                    <td>Paris</td>
-                                </tr>
-                                <tr>
-                                    <td>Cairo</td>
-                                </tr>
-                                <tr>
-                                    <td>Dubai</td>
-                                </tr>
-                            </table>
-                    </section>
-                </div>
-
-                <div class="col-lg-8">
-                    <section class="display-section">
-                        <div class="container">
-                            <h3 id="cityName"></h3><span id="dateString"></span><img id="weather_image" src="">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <p><i class="fas fa-thermometer-full"></i> <span id="temperature"></span></p>
-                                    <p><i class="fas fa-temperature-high"></i> Max Temp: <span id="max"></span></p>
-                                    <p><i class="fas fa-temperature-low"></i> Min Temp: <span id="min"></span></p>
-                                </div>
-                                <div class="col-lg-6">
-                                    <p><i class="fas fa-sun"></i> UV index: <span id="uvindex"></span></p>
-                                    <p><i class="fas fa-smog"></i> Humidity: <span id="humidity"></span>%</p>
-                                    <p><i class="fas fa-wind"></i> Wind Speed: <span id="wind"></span></p>
-                                </div>
+                        <form class="form-inline">
+                            <div class="form-group mb-2 ml-2">
+                                <input type="text" id="cityInput" placeholder="Search">
+                                <!-- City, Province, Country... -->
+                                <button id="submitBtn" type="submit" class="btn">
+                                    <div class="bi bi-search"></div>
+                                </button>
+                                <button id="localBtn" type="button">
+                                    <div class="bi bi-cursor-fill"></div>
+                                </button>
                             </div>
-                        </div>
-                    </section>
-                    <div class="row">
-                        <section class="forecastWeather">
+                        </form>
+
+                        <section class="user-section">
+                            <div class="cityPicker">
+                                <table class="cityList table table-striped table-hover" id="cityList">
+                                    <tr>
+                                        <td>New Jersey</td>
+                                    </tr>
+                                    <tr>
+                                        <td>New York</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Beirut</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Paris</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cairo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hong Kong</td>
+                                    </tr>
+                                </table>
+                        </section>
+                    </div>
+
+                    <div class="col-lg-8">
+                        <section class="display-section">
                             <div class="container">
-                                <!-- <h3>Forecast: </h3> -->
-                                <div class="row" id="forecastDays">
-
+                                <h2 id="cityName"></h2><span id="dateString"></span><span id="timeZone"></span>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <h4><i class="fas fa-thermometer-full"></i> <span id="temperature"></span>
+                                            <img id="weather_image" src="">
+                                            <span id="weatherDes"></span>
+                                        </h4>
+                                        <p><i class="fas fa-temperature-high"></i> H: <span id="max"></span></p>
+                                        <p><i class="fas fa-temperature-low"></i> L: <span id="min"></span></p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <p><i class="fas fa-sun"></i> UVi: <span id="uvindex"></span></p>
+                                        <p><i class="fas fa-smog"></i> Humidity: <span id="humidity"></span>%</p>
+                                        <p><i class="fas fa-wind"></i> Wind: <span id="wind"></span></p>
+                                    </div>
                                 </div>
                             </div>
+                        </section>
+                        <div class="row">
+                            <section class="forecastWeather">
+                                <div class="container">
+                                    <h3 style="margin-left: 20px;">Forecast</h3>
+                                    <div class="row" id="forecastDays">
+
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer>
-        <div class="foot">
-            <p>Powered by OpenWeatherMap</p>
-        </div>
-    </footer>
+        <footer>
+            <div class="foot">
+                <p>Powered by OpenWeatherMap</p>
+            </div>
+        </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="assets/script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="assets/script.js"></script>
 </body>
 
 </html>
