@@ -53,7 +53,7 @@ function toggleTemperatureUnit() {
 $(".units").on("click", toggleTemperatureUnit);
 
 
-// setWeather("New Jersey");
+setWeather("New Jersey");
 
 function getCurrentLocationWeather() {
     if ("geolocation" in navigator) {
