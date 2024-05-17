@@ -52,34 +52,30 @@
                         </form>
 
                         <section class="user-section">
+                            <div style="margin: 4px 10px; text-align: center;">
+                                <div style=" align-self: flex-end; cursor: default;">Favorites<i
+                                        class="bi bi-stars"></i></div>
+                            </div>
                             <div class="cityPicker">
-                                <table class="cityList table table-striped table-hover" id="cityList">
-                                    <tr>
-                                        <td>New Jersey</td>
-                                    </tr>
-                                    <tr>
-                                        <td>New York</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Beirut</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Paris</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cairo</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hong Kong</td>
-                                    </tr>
+                                <table class="cityList list-group" id="cityList">
+                                    <tbody>
+                                        <!-- Favorited locations displayed here -->
+                                    </tbody>
                                 </table>
+                            </div>
                         </section>
                     </div>
 
                     <div class="col-lg-8">
                         <section class="display-section">
                             <div class="container">
-                                <h2 id="cityName"></h2><span id="dateString"></span><span id="timeZone"></span>
+                                <div style="display: flex;">
+                                    <i id="favoriteButton" class="bi bi-bookmark-plus"></i>
+
+
+                                    <h2 id="cityName"></h2>
+                                    <span style="text-align: right; margin-left: auto;" id="dateString"></span>
+                                </div>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <h4><i class="fas fa-thermometer-full"></i> <span id="temperature"></span>

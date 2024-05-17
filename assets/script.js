@@ -2,6 +2,7 @@ var cityInput = $("#cityInput");
 var unitSelected;
 var unit = "F";
 var unit2 = "mph";
+var emptyRow = "<tr><td>No favortites added</td></tr>";
 
 
 // Check if there's a stored value for the temperature unit preference
@@ -53,7 +54,7 @@ function toggleTemperatureUnit() {
 $(".units").on("click", toggleTemperatureUnit);
 
 
-setWeather("New Jersey");
+
 
 function getCurrentLocationWeather() {
     if ("geolocation" in navigator) {
@@ -82,13 +83,13 @@ $("#submitBtn").on("click", function (e) {
     setWeather(city)
 });
 
-$("#cityList").on("click", "td", function (e) {
+$("#cityList").on("click", "li", function (e) {
 
     var clicked = $(this).text();
     setWeather(clicked);
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
     var lastCity = localStorage.getItem("lastCityWeather");
     if (lastCity) {
         setWeather(lastCity);
@@ -106,10 +107,21 @@ function setWeather(city) {
         var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=metric&appid=b774102802580c232f4e227fa165c18f";
     }
 
+
+
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function (response) {
+
+        var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        var isFavorite = favorites.includes(city);
+        if (isFavorite) {
+            $('#favoriteButton').removeClass('bi-bookmark-plus').addClass('bi-bookmark-star-fill');
+        } else {
+            $('#favoriteButton').removeClass('bi-bookmark-star-fill').addClass('bi-bookmark-plus');
+        }
+
 
 
         var lattitude = response.city.coord.lat;
@@ -178,6 +190,8 @@ function setWeather(city) {
                 }
 
             });
+
+
         }
     });
 }
@@ -317,8 +331,7 @@ $(document).ready(function () {
     // Apply dark mode if it was enabled previously
     if (darkModeEnabled === 'true') {
         $('body').addClass('dark-mode');
-        $('.container h3, .cityPicker td').addClass('dark-mode-text')
-        $('.user-section').addClass('dark-table');
+        $('.container h3, .cityPicker, .favorite-city').addClass('dark-mode-text')
         $('#submitBtn').addClass('dark-mode-button')
         $('#cityInput').addClass('dark-mode-input')
     }
@@ -326,8 +339,8 @@ $(document).ready(function () {
     // Dark mode toggle
     $('#dark-mode-toggle').click(function () {
         $('body').addClass('dark-mode');
-        $('.container h3, .cityPicker td').addClass('dark-mode-text')
-        $('.user-section').addClass('dark-table');
+        $('.container h3, .cityPicker, .favorite-city').addClass('dark-mode-text')
+
         $('#submitBtn').addClass('dark-mode-button')
         $('#cityInput').addClass('dark-mode-input')
 
@@ -337,11 +350,100 @@ $(document).ready(function () {
     // Light mode toggle
     $('#light-mode-toggle').click(function () {
         $('body').removeClass('dark-mode');
-        $('.container h3, .cityPicker td').removeClass('dark-mode-text')
-        $('.user-section').removeClass('dark-table');
+        $('.container h3, .cityPicker').removeClass('dark-mode-text')
         $('#submitBtn').removeClass('dark-mode-button')
         $('#cityInput').removeClass('dark-mode-input')
 
         localStorage.setItem('darkModeEnabled', 'false');
     });
 });
+
+$(document).ready(function () {
+    // Function to toggle favorite status
+    function toggleFavorite(city) {
+        var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        var index = favorites.indexOf(city);
+        if (index === -1) {
+            favorites.push(city);
+        } else {
+            favorites.splice(index, 1);
+        }
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        displayFavorites();
+    }
+
+    // Function to display favorited locations in the favorites table
+    function displayFavorites() {
+        var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        var $favoritesTable = $('#cityList tbody');
+        $favoritesTable.empty();
+        favorites.forEach(function (city) {
+            var $row = $('<ul>').append($('<li>').text(city).addClass('favorite-city'));
+            $favoritesTable.append($row);
+        });
+
+    }
+
+
+
+    // Toggle favorite button class and perform toggleFavorite function
+    $('#favoriteButton').click(function () {
+        var city = $('#cityName').text().trim();
+        var isFavorite = $(this).hasClass('bi-bookmark-star-fill');
+        toggleFavorite(city);
+        if (isFavorite) {
+            $(this).removeClass('bi-bookmark-star-fill').addClass('bi-bookmark-plus');
+        } else {
+            $(this).removeClass('bi-bookmark-plus').addClass('bi-bookmark-star-fill');
+        }
+    });
+
+    // function setDefaultCity() {
+    //     var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    //     if (favorites.length > 0) {
+    //         var defaultCity = favorites[0]; // Get the first favorite city
+    //         setWeather(defaultCity); // Set weather for the default city
+    //     }
+    // }
+
+    // // Call setDefaultCity function on page load
+    // setDefaultCity();
+
+
+
+    // Call displayFavorites() on page load
+    displayFavorites();
+
+    function addEmptyRow() {
+        // Function to add an empty row if no favorites are added
+        var emptyRow = "<ul><li>No favorites </li></ul>";
+        if ($("#cityList tbody").children().length === 0) {
+            $("#cityList tbody").append(emptyRow);
+        }
+    }
+
+    // Call addEmptyRow function when the page loads
+    addEmptyRow();
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// if (isFahrenheit) {
+
+//         var queryURL2 = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=b774102802580c232f4e227fa165c18f";
+//     } else {
+
+//         var queryURL2 = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=b774102802580c232f4e227fa165c18f";
+//     }

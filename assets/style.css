@@ -14,30 +14,27 @@ body {
 }
 
 .dark-mode-button {
-    background-color: whitesmoke!important;
-    color: black!important;
-    border-left:  0px; ;
-    
-    
+    background-color: whitesmoke !important;
+    color: black !important;
+    border-left: 0px;
+    ;
+
+
 
 }
 
 .dark-mode-input {
-    border: 1px solid whitesmoke!important;
+    border: 1px solid whitesmoke !important;
     color: white;
-    
-    
+
+
 }
 
 .dark-mode-text {
     color: white;
 }
 
-.dark-table {
-    transition: 800ms;
-    background-color: #474f57;
 
-}
 
 h1,
 h2,
@@ -159,9 +156,9 @@ nav h3 {
 }
 
 #cityName {
-    display: inline;
-    margin-right: 10px;
-    padding: 10px;
+
+    margin: 2px 0px 0px 0px;
+
 
 }
 
@@ -193,6 +190,36 @@ nav h3 {
     border: 0px;
 }
 
+.bi-bookmark-plus {
+    font-size: 30px;
+}
+
+.bi-bookmark-plus:hover {
+    color: #ffd500;
+    cursor: pointer;
+}
+
+.bi-bookmark-star-fill {
+    font-size: 30px;
+    color: #ffcc00; 
+}
+
+.bi-bookmark-star-fill:hover {
+    color: #ffd561;
+    cursor: pointer;
+}
+
+#dateString {
+    text-align: right;
+    margin-left: auto;
+    align-self: center;
+    font-size: 17px;
+}
+
+.bi-stars {
+    color: #ffbb00;
+}
+
 .uvi {
     padding: 5px 8px;
     border-radius: 14px;
@@ -217,24 +244,35 @@ nav h3 {
 }
 
 .user-section {
-
     border: 0px solid rgb(255, 255, 255);
     border-radius: 10px;
     cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    padding-top: 6px;
+    padding-top: 1px;
 }
 
-.table td {
-    border: 0px solid;
-
+tbody ul {
+    align-items: center;
+    padding: 0px;
 }
+
+.favorite-city {
+  margin: 15px;
+  list-style: none;
+  background-color: #0099FF; 
+  padding: 20px;
+  border-radius: 10px;
+}
+
+
+
+
 
 .display-section {
     padding: 10px;
     border-radius: 15px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
     color: white;
+    background-color: #343a40;
 }
 
 #temperature {
@@ -333,10 +371,17 @@ footer {
     width: 100%;
     position: absolute;
     bottom: 0;
+    
 }
 
 .foot {
     margin: 10px;
+}
+
+@media screen and (max-width: 767px) {
+    footer {
+        position: fixed;
+    }
 }
 
 @media (min-width: 1920px),
