@@ -45,7 +45,9 @@ function toggleTemperatureUnit() {
         unit = "C";
         unit2 = "m/s";
     }
-    setWeather($("#cityName").text()); // Update weather data with new units
+
+    // Update weather data with new units
+    setWeather($("#cityName").text()); 
     // Store the toggled unit preference in local storage
     localStorage.setItem("temperatureUnit", isFahrenheit ? "F" : "C");
 }
@@ -136,7 +138,7 @@ function setWeather(city) {
         var max = Math.floor(response.list[0].main.temp_max)
         var wind = (response.list[0].wind.speed)
         var weatherDes = (response.list[0].weather[0].description)
-
+        $(".favorite-city")
         $("#cityName").text(response.city.name);
         $("#temperature").html(noDec + "&#730" + unit);
         $("#main_weather").text(response.list[0].weather[0].main)
@@ -180,7 +182,7 @@ function setWeather(city) {
                     $(".display-section").attr("id", response.list[0].weather[0].main);
                     $(".navbar-brand").attr("id", response.list[0].weather[0].main);
                     newDiv.addClass("col-lg-0").appendTo("#forecastDays");
-                    newDiv.addClass("" + weatherId).appendTo("#forecastDays");
+                    newDiv.addClass(weatherId).appendTo("#forecastDays");
                     newDiv.html("<h6>" + dateTime + "</h6>").appendTo(newDiv);
                     pTemp.html(noDec2 + "&#730" + unit).appendTo(newDiv);
                     pHumid.html('<i class="fas fa-smog"></i>' + response.list[i].main.humidity + "%").appendTo(newDiv);
@@ -255,7 +257,7 @@ function setWeatherByLocation(latitude, longitude) {
             $(".display-section").attr("id", response.list[0].weather[0].main);
             $(".navbar-brand").attr("id", response.list[0].weather[0].main);
             newDiv.addClass("col-lg-0").appendTo("#forecastDays");
-            newDiv.addClass("" + weatherId).appendTo("#forecastDays");
+            newDiv.addClass(weatherId).appendTo("#forecastDays");
             newDiv.html("<h6>" + dateTime + "</h6>").appendTo(newDiv);
             pTemp.html(noDec2 + "&#730" + unit).appendTo(newDiv);
             pHumid.html('<i class="fas fa-smog"></i>' + response.list[i].main.humidity + "%").appendTo(newDiv);
@@ -377,10 +379,13 @@ $(document).ready(function () {
         var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         var $favoritesTable = $('#cityList tbody');
         $favoritesTable.empty();
-        favorites.forEach(function (city) {
-            var $row = $('<ul>').append($('<li>').text(city).addClass('favorite-city'));
-            $favoritesTable.append($row);
-        });
+        // favorites.forEach(function (city) {
+        //     var $row = $('<div>').append($('<div>').text(city));
+
+
+        //     $favoritesTable.append($row);
+
+        // });
 
     }
 
@@ -416,34 +421,195 @@ $(document).ready(function () {
 
     function addEmptyRow() {
         // Function to add an empty row if no favorites are added
-        var emptyRow = "<ul><li>No favorites </li></ul>";
-        if ($("#cityList tbody").children().length === 0) {
-            $("#cityList tbody").append(emptyRow);
+        var emptyRow = "<div id='no-favorites'>No favorites added</div>";
+        var $cityList = $("#cityList");
+    
+        if ($cityList.children().length === 0) {
+            $cityList.append(emptyRow);
+        } else {
+            $("#no-favorites").remove(); // Remove the message if there are favorites
         }
     }
 
-    // Call addEmptyRow function when the page loads
-    addEmptyRow();
+    
+
+   
+    
+    // Function to display favorited locations with weather information in the favorites list
+    function displayFavoritesWithWeather() {
+        var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        var $favoritesList = $('#cityList');
+        $favoritesList.empty();
+        favorites.forEach(function (city) {
+            var $cityItem = $('<div>').addClass("fav");
+    
+            // Append city name as a button element
+            var $cityButton = $('<li>')
+                .attr('data-city', city) // Use data attribute to store the city name
+                .addClass('favorite-city')
+                .text(city);
+    
+            // Attach click event handler to the button
+            $cityButton.on('click', function () {
+                handleFavoriteButtonClick(city);
+            });
+    
+            // Append the button to the list item
+            $cityItem.append($cityButton);
+    
+            // Append the list item to the favorites list
+            $favoritesList.append($cityItem);
+    
+            // Update weather information for the city
+            updateFavoriteWeather(city);
+        });
+        addEmptyRow();
+    }
+    
+    // Function to fetch weather information for a city and update the corresponding button
+    function updateFavoriteWeather(city) {
+        
+        if (isFahrenheit) {
+
+            var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=b774102802580c232f4e227fa165c18f";
+        } else {
+    
+            var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=metric&appid=b774102802580c232f4e227fa165c18f";
+        }
+    
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).done(function (response) {
+            console.log(response); // Debugging
+            // Extract relevant weather information from the response
+            var temperature = Math.floor(response.list[0].main.temp);
+            var weatherId = response.list[0].weather[0].main;
+            var weatherDes = response.list[0].weather[0].description;
+    
+            // Find the corresponding button using the data attribute and update it
+            var $cityButton = $('[data-city="' + city + '"]');
+            $cityButton.addClass(weatherId).empty().append(
+                $('<div>').append(
+                    $('<h4>').text(city),
+                    $('<p>').text(weatherDes)
+                ),
+                $('<h2>').addClass("temp").text(temperature + "˚" + (isFahrenheit ? "F" : "C"))
+            );
+    
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            console.error("API call failed: ", textStatus, errorThrown); // Improved error handling
+            if (jqXHR.responseJSON && jqXHR.responseJSON.message) {
+                console.error("Error message: ", jqXHR.responseJSON.message);
+            }
+        });
+    }
+    
+    // Function to update weather information when a favorite button is clicked
+    function handleFavoriteButtonClick(city) {
+        // Fetch and display weather information for the clicked city
+        setWeather(city);
+    }
+    
+    // Function to add or remove a city from the favorites list
+    function toggleFavorite(city) {
+        var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        var index = favorites.indexOf(city);
+        if (index === -1) {
+            favorites.push(city);
+        } else {
+            favorites.splice(index, 1);
+        }
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        // Call function to display favorites with updated weather information
+        displayFavoritesWithWeather();
+    }
+    
+    // Call displayFavoritesWithWeather on page load
+    $(document).ready(function () {
+        displayFavoritesWithWeather();
+    });
+    
+    // Function to add a city to the favorites list
+    function addFavorite(city) {
+        var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        if (!favorites.includes(city)) {
+            favorites.push(city);
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            displayFavoritesWithWeather();
+        }
+    }
+    
+    // Example of how to use the addFavorite function
+    $('#addFavoriteButton').on('click', function () {
+        var city = $('#cityInput').val();
+        addFavorite(city);
+    });
+    
+    // Function to add an empty row if no favorites are added
+    function addEmptyRow() {
+        var emptyRow = "<div id='no-favorites'>No favorites</div>";
+        var $cityList = $("#cityList");
+    
+        if ($cityList.children().length === 0) {
+            $cityList.append(emptyRow);
+        } else {
+            $("#no-favorites").remove(); // Remove the message if there are favorites
+        }
+    }
+
+    // If there's a stored value, use it; otherwise, default to Fahrenheit
+    var isFahrenheit = (storedUnit === "C") ? false : true;
+    
+
+    if (!isFahrenheit) {
+        unit = "C";
+        unit2 = "m/s";
+    }
+    
+    $(".units").on("click", "button", function () {
+        unitSelected = $(this).attr("value");
+    
+        if (unitSelected === "F˚") {
+            isFahrenheit = false;
+            unit = "F";
+            unit2 = "mph";
+        } else {
+            isFahrenheit = true;
+            unit = "C";
+            unit2 = "m/s";
+        }
+    
+        // Store the selected unit preference in local storage
+        localStorage.setItem("temperatureUnit", isFahrenheit ? "F" : "C");
+    });
+    
+    // Function to toggle temperature unit and update all relevant temperatures
+    function toggleTemperatureUnit() {
+        isFahrenheit = !isFahrenheit;
+        if (isFahrenheit) {
+            unit = "F";
+            unit2 = "mph";
+        } else {
+            unit = "C";
+            unit2 = "m/s";
+        }
+        // Update weather data with new units for the current city and favorites
+        updateFavoriteTemperatures();
+    
+        // Store the toggled unit preference in local storage
+        localStorage.setItem('temperatureUnit', isFahrenheit ? 'F' : 'C');
+    }
+    
+    // Function to update temperatures for all favorite cities
+    function updateFavoriteTemperatures() {
+        var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        favorites.forEach(function(city) {
+            updateFavoriteWeather(city);
+        });
+    }
+    
+    // Attach click event to toggle temperature unit button
+    $(".units").on('click',  "button" ,toggleTemperatureUnit);
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// if (isFahrenheit) {
-
-//         var queryURL2 = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=b774102802580c232f4e227fa165c18f";
-//     } else {
-
-//         var queryURL2 = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=b774102802580c232f4e227fa165c18f";
-//     }

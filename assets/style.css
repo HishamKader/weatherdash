@@ -250,22 +250,38 @@ nav h3 {
     padding-top: 1px;
 }
 
-tbody ul {
+tbody {
     align-items: center;
     padding: 0px;
+    
+}
+
+.fav {
+    
 }
 
 .favorite-city {
-  margin: 15px;
+  margin: 5px;
   list-style: none;
-  background-color: #0099FF; 
-  padding: 20px;
-  border-radius: 10px;
+  padding: 15px;
+  border-radius: 10px;  
+  color: white;
+  display: flex;
+  align-items: center;
+  box-shadow: rgba(26, 26, 27, 0.325) 0px 7px 29px 0px;
 }
 
+.favorite-city p ,h4 {
+  margin: 0px;
 
+  }
 
-
+.temp {
+   margin-left: auto; 
+   text-align: right;
+   font-size: 28px;
+   
+}
 
 .display-section {
     padding: 10px;
@@ -276,9 +292,10 @@ tbody ul {
 }
 
 #temperature {
-    font-size: 28px;
+    font-size: 35px;
     border-radius: 20px;
     text-shadow: rgba(0, 0, 0, 0.451) 1px 0 8px;
+    align-self: baseline;
 }
 
 .hot {
