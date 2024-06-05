@@ -39,7 +39,7 @@
                     <div class="col-lg-4">
 
                         <form class="form-inline">
-                            <div class="form-group mb-2 ml-2">
+                            <div class="form-group  ml-2">
                                 <input type="text" id="cityInput" placeholder="Search">
                                 <!-- City, Province, Country... -->
                                 <button id="submitBtn" type="submit" class="btn">
@@ -49,7 +49,9 @@
                                     <div class="bi bi-cursor-fill"></div>
                                 </button>
                             </div>
+                            <ul id="suggestions" class="list-group"></ul>
                         </form>
+                        
 
                         <section class="user-section">
                             <div style="margin: 4px 10px; text-align: center;">
@@ -73,12 +75,12 @@
                                     <i id="favoriteButton" class="bi bi-bookmark-plus"></i>
 
 
-                                    <h2 id="cityName"></h2>
+                                    <h2 id="cityName"></h2> <div id="localTime"></div>
                                     <span style="text-align: right; margin-left: auto;" id="dateString"></span>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <h4 style=""><i></i> <span id="temperature"></span>
+                                        <h4><i></i> <span id="temperature"></span>
                                             <img id="weather_image" src="">
                                             <span id="weatherDes"></span>
                                         </h4>

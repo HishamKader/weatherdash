@@ -18,6 +18,8 @@ if (!isFahrenheit) {
     unit2 = "m/s";
 }
 
+
+
 $(".units").on("click", "button", function () {
     unitSelected = $(this).attr("value");
 
@@ -47,7 +49,7 @@ function toggleTemperatureUnit() {
     }
 
     // Update weather data with new units
-    setWeather($("#cityName").text()); 
+    setWeather($("#cityName").text());
     // Store the toggled unit preference in local storage
     localStorage.setItem("temperatureUnit", isFahrenheit ? "F" : "C");
 }
@@ -98,7 +100,7 @@ $(document).ready(function () {
     }
 });
 
-function setWeather(city) {
+function setWeather(city, timezone) {
 
 
     if (isFahrenheit) {
@@ -138,6 +140,7 @@ function setWeather(city) {
         var max = Math.floor(response.list[0].main.temp_max)
         var wind = (response.list[0].wind.speed)
         var weatherDes = (response.list[0].weather[0].description)
+
         $(".favorite-city")
         $("#cityName").text(response.city.name);
         $("#temperature").html(noDec + "&#730" + unit);
@@ -148,13 +151,28 @@ function setWeather(city) {
         $("#dateString").text(longDate);
 
         $("#feels").html(response.list[0].main.feels_like + "&#730" + unit);
-        $("#max").html(max + "&#730" + unit);
-        $("#min").html(min + "&#730" + unit);
+        $("#max").html(max + "&#730");
+        $("#min").html(min + "&#730");
         $("#weatherDes").html(weatherDes)
+
+        getLocalTime(timezone);
 
         getDailyForecast(city);
 
         localStorage.setItem("lastCityWeather", city);
+
+        function getLocalTime(timezone) {
+            var queryURL = `http://worldtimeapi.org/api/timezone/${timezone}`;
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).done(function(response) {
+                var localTime = new Date(response.datetime).toLocaleTimeString();
+                $("#localTime").text(localTime);
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                console.error("API call failed: ", textStatus, errorThrown);
+            });
+        }
 
         function getDailyForecast(city) {
 
@@ -162,6 +180,14 @@ function setWeather(city) {
                 url: queryURL,
                 method: "GET"
             }).then(function (response) {
+
+                var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+                var isFavorite = favorites.includes(city);
+                if (isFavorite) {
+                    $('#favoriteButton').removeClass('bi-bookmark-plus').addClass('bi-bookmark-star-fill');
+                } else {
+                    $('#favoriteButton').removeClass('bi-bookmark-star-fill').addClass('bi-bookmark-plus');
+                }
 
                 $("#forecastDays").empty();
 
@@ -176,13 +202,13 @@ function setWeather(city) {
                     var iconImage = $("<img>");
                     var des = $("<p>")
                     var weatherId = (response.list[i].weather[0].main);
-
+                    var weatherDes = (response.list[i].weather[0].description);
 
                     $("#day1 h6").text("Today");
-                    $(".display-section").attr("id", response.list[0].weather[0].main);
-                    $(".navbar-brand").attr("id", response.list[0].weather[0].main);
+                    $(".display-section").attr("id", response.list[0].weather[0].description);
+                    $(".navbar-brand").attr("id", response.list[0].weather[0].description);
                     newDiv.addClass("col-lg-0").appendTo("#forecastDays");
-                    newDiv.addClass(weatherId).appendTo("#forecastDays");
+                    newDiv.addClass(weatherDes).appendTo("#forecastDays");
                     newDiv.html("<h6>" + dateTime + "</h6>").appendTo(newDiv);
                     pTemp.html(noDec2 + "&#730" + unit).appendTo(newDiv);
                     pHumid.html('<i class="fas fa-smog"></i>' + response.list[i].main.humidity + "%").appendTo(newDiv);
@@ -201,13 +227,13 @@ function setWeather(city) {
 
 function setWeatherByLocation(latitude, longitude) {
 
-    var queryURL;
+    
     if (isFahrenheit) {
 
-        queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&units=imperial&appid=b774102802580c232f4e227fa165c18f";
+       var queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&units=imperial&appid=b774102802580c232f4e227fa165c18f";
     } else {
 
-        queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&units=metric&appid=b774102802580c232f4e227fa165c18f";
+       var queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&units=metric&appid=b774102802580c232f4e227fa165c18f";
     }
     $.ajax({
         url: queryURL,
@@ -220,13 +246,17 @@ function setWeatherByLocation(latitude, longitude) {
 
         getUVI(lattitude, longitude);
 
+    
+
+
         var longDate = fullDate(response.list[0].dt);
         var noDec = Math.floor(response.list[0].main.temp);
         var min = Math.floor(response.list[0].main.temp_min)
         var max = Math.floor(response.list[0].main.temp_max)
         var wind = (response.list[0].wind.speed)
+        var weatherDes = (response.list[0].weather[0].description)
 
-
+        $(".favorite-city")
         $("#cityName").text(response.city.name);
         $("#temperature").html(noDec + "&#730" + unit);
         $("#main_weather").text(response.list[0].weather[0].main)
@@ -234,9 +264,11 @@ function setWeatherByLocation(latitude, longitude) {
         $("#wind").text(wind + unit2);
         $("#weather_image").attr("src", "http://openweathermap.org/img/w/" + response.list[0].weather[0].icon + ".png");
         $("#dateString").text(longDate);
+
         $("#feels").html(response.list[0].main.feels_like + "&#730" + unit);
-        $("#max").html(max + "&#730" + unit);
-        $("#min").html(min + "&#730" + unit);
+        $("#max").html(max + "&#730");
+        $("#min").html(min + "&#730");
+        $("#weatherDes").html(weatherDes)
 
         $("#forecastDays").empty();
 
@@ -251,13 +283,13 @@ function setWeatherByLocation(latitude, longitude) {
             var iconImage = $("<img>");
             var des = $("<p>")
             var weatherId = (response.list[i].weather[0].main);
-
+            var weatherDes = (response.list[i].weather[0].description);
 
             $("#day1 h6").text("Today");
-            $(".display-section").attr("id", response.list[0].weather[0].main);
-            $(".navbar-brand").attr("id", response.list[0].weather[0].main);
+            $(".display-section").attr("id", response.list[0].weather[0].description);
+            $(".navbar-brand").attr("id", response.list[0].weather[0].description);
             newDiv.addClass("col-lg-0").appendTo("#forecastDays");
-            newDiv.addClass(weatherId).appendTo("#forecastDays");
+            newDiv.addClass(weatherDes).appendTo("#forecastDays");
             newDiv.html("<h6>" + dateTime + "</h6>").appendTo(newDiv);
             pTemp.html(noDec2 + "&#730" + unit).appendTo(newDiv);
             pHumid.html('<i class="fas fa-smog"></i>' + response.list[i].main.humidity + "%").appendTo(newDiv);
@@ -423,7 +455,7 @@ $(document).ready(function () {
         // Function to add an empty row if no favorites are added
         var emptyRow = "<div id='no-favorites'>No favorites added</div>";
         var $cityList = $("#cityList");
-    
+
         if ($cityList.children().length === 0) {
             $cityList.append(emptyRow);
         } else {
@@ -431,10 +463,47 @@ $(document).ready(function () {
         }
     }
 
+    $("#cityInput").on('input', function() {
+        var query = $(this).val();
+        if (query.length >= 3) {
+            getCitySuggestions(query);
+        } else {
+            $("#suggestions").empty();
+        }
+    });
+    
+    $("#suggestions").on('click', 'li', function() {
+        var city = $(this).data('city');
+        var timezone = $(this).data('timezone');
+        $("#cityInput").val(city);
+        $("#suggestions").empty();
+        setWeather(city, timezone);
+    });
+    
+    function getCitySuggestions(query) {
+        var apiKey = "fd0287d3a8msha42c256f280cf3ap1d2330jsn593692010d1a";  
+        var queryURL = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?namePrefix=${query}&sort=-population&types=CITY`;
+        $.ajax({
+            url: queryURL,
+            method: "GET",
+            headers: {
+                "x-rapidapi-key": apiKey,
+                "x-rapidapi-host": "wft-geo-db.p.rapidapi.com"
+            }
+        }).done(function(response) {
+            var suggestions = response.data;
+            $("#suggestions").empty();
+            suggestions.forEach(function(city) {
+                var suggestionItem = `${city.city}, ${city.regionCode}, ${city.country}`;
+                $("#suggestions").append(`<li class="list-group-item" data-city="${city.city}" data-timezone="${city.timezone}">${suggestionItem}</li>`);
+            });
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            console.error("API call failed: ", textStatus, errorThrown);
+        });
+    }
     
 
-   
-    
+
     // Function to display favorited locations with weather information in the favorites list
     function displayFavoritesWithWeather() {
         var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -442,41 +511,41 @@ $(document).ready(function () {
         $favoritesList.empty();
         favorites.forEach(function (city) {
             var $cityItem = $('<div>').addClass("fav");
-    
+
             // Append city name as a button element
             var $cityButton = $('<li>')
                 .attr('data-city', city) // Use data attribute to store the city name
                 .addClass('favorite-city')
                 .text(city);
-    
+
             // Attach click event handler to the button
             $cityButton.on('click', function () {
                 handleFavoriteButtonClick(city);
             });
-    
+
             // Append the button to the list item
             $cityItem.append($cityButton);
-    
+
             // Append the list item to the favorites list
             $favoritesList.append($cityItem);
-    
+
             // Update weather information for the city
             updateFavoriteWeather(city);
         });
         addEmptyRow();
     }
-    
+
     // Function to fetch weather information for a city and update the corresponding button
     function updateFavoriteWeather(city) {
-        
+
         if (isFahrenheit) {
 
             var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=b774102802580c232f4e227fa165c18f";
         } else {
-    
+
             var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=metric&appid=b774102802580c232f4e227fa165c18f";
         }
-    
+
         $.ajax({
             url: queryURL,
             method: "GET"
@@ -486,17 +555,29 @@ $(document).ready(function () {
             var temperature = Math.floor(response.list[0].main.temp);
             var weatherId = response.list[0].weather[0].main;
             var weatherDes = response.list[0].weather[0].description;
-    
+            var min = Math.floor(response.list[0].main.temp_min)
+            var max = Math.floor(response.list[0].main.temp_max)
+
             // Find the corresponding button using the data attribute and update it
             var $cityButton = $('[data-city="' + city + '"]');
-            $cityButton.addClass(weatherId).empty().append(
+            $cityButton.addClass(weatherDes).empty().append(
                 $('<div>').append(
                     $('<h4>').text(city),
                     $('<p>').text(weatherDes)
                 ),
-                $('<h2>').addClass("temp").text(temperature + "˚" + (isFahrenheit ? "F" : "C"))
-            );
-    
+
+                $('<div>').addClass("temp-group").append(
+                    $('<h2>').addClass("temp").text(temperature + "˚" + (isFahrenheit ? "F" : "C"))
+
+                ));
+
+
+            // $('<div>').addClass("hl-group").append(
+            // $('<p>').html("H: " + max + "&#730 " + ""),
+            // $('<p>').html("L: " + min + "&#730")
+            // ))
+
+
         }).fail(function (jqXHR, textStatus, errorThrown) {
             console.error("API call failed: ", textStatus, errorThrown); // Improved error handling
             if (jqXHR.responseJSON && jqXHR.responseJSON.message) {
@@ -504,13 +585,13 @@ $(document).ready(function () {
             }
         });
     }
-    
+
     // Function to update weather information when a favorite button is clicked
     function handleFavoriteButtonClick(city) {
         // Fetch and display weather information for the clicked city
         setWeather(city);
     }
-    
+
     // Function to add or remove a city from the favorites list
     function toggleFavorite(city) {
         var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -524,12 +605,12 @@ $(document).ready(function () {
         // Call function to display favorites with updated weather information
         displayFavoritesWithWeather();
     }
-    
+
     // Call displayFavoritesWithWeather on page load
     $(document).ready(function () {
         displayFavoritesWithWeather();
     });
-    
+
     // Function to add a city to the favorites list
     function addFavorite(city) {
         var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -539,18 +620,18 @@ $(document).ready(function () {
             displayFavoritesWithWeather();
         }
     }
-    
+
     // Example of how to use the addFavorite function
     $('#addFavoriteButton').on('click', function () {
         var city = $('#cityInput').val();
         addFavorite(city);
     });
-    
+
     // Function to add an empty row if no favorites are added
     function addEmptyRow() {
         var emptyRow = "<div id='no-favorites'>No favorites</div>";
         var $cityList = $("#cityList");
-    
+
         if ($cityList.children().length === 0) {
             $cityList.append(emptyRow);
         } else {
@@ -560,16 +641,16 @@ $(document).ready(function () {
 
     // If there's a stored value, use it; otherwise, default to Fahrenheit
     var isFahrenheit = (storedUnit === "C") ? false : true;
-    
+
 
     if (!isFahrenheit) {
         unit = "C";
         unit2 = "m/s";
     }
-    
+
     $(".units").on("click", "button", function () {
         unitSelected = $(this).attr("value");
-    
+
         if (unitSelected === "F˚") {
             isFahrenheit = false;
             unit = "F";
@@ -579,11 +660,11 @@ $(document).ready(function () {
             unit = "C";
             unit2 = "m/s";
         }
-    
+
         // Store the selected unit preference in local storage
         localStorage.setItem("temperatureUnit", isFahrenheit ? "F" : "C");
     });
-    
+
     // Function to toggle temperature unit and update all relevant temperatures
     function toggleTemperatureUnit() {
         isFahrenheit = !isFahrenheit;
@@ -596,20 +677,22 @@ $(document).ready(function () {
         }
         // Update weather data with new units for the current city and favorites
         updateFavoriteTemperatures();
-    
+
         // Store the toggled unit preference in local storage
         localStorage.setItem('temperatureUnit', isFahrenheit ? 'F' : 'C');
     }
-    
+
     // Function to update temperatures for all favorite cities
     function updateFavoriteTemperatures() {
         var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        favorites.forEach(function(city) {
+        favorites.forEach(function (city) {
             updateFavoriteWeather(city);
         });
     }
-    
+
     // Attach click event to toggle temperature unit button
-    $(".units").on('click',  "button" ,toggleTemperatureUnit);
+    $(".units").on('click', "button", toggleTemperatureUnit);
 
 });
+
+

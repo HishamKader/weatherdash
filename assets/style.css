@@ -1,10 +1,8 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: white;
     text-shadow: #00000032 1px 0px 8px;
     transition: 500ms;
-
 }
 
 .dark-mode {
@@ -17,24 +15,16 @@ body {
     background-color: whitesmoke !important;
     color: black !important;
     border-left: 0px;
-    ;
-
-
-
 }
 
 .dark-mode-input {
     border: 1px solid whitesmoke !important;
     color: white;
-
-
 }
 
 .dark-mode-text {
     color: white;
 }
-
-
 
 h1,
 h2,
@@ -64,7 +54,7 @@ nav {
     position: relative;
     justify-content: space-between;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
-
+    border: 1px rgba(128, 128, 128, 0.222) solid;
 }
 
 .navbar-brand {
@@ -95,23 +85,22 @@ button:focus,
 
 .f-button {
     background: rgb(36, 230, 42);
+    background: linear-gradient(90deg, rgba(4, 214, 107, 1) 85%, rgba(4, 214, 107, 1) 85%);
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     color: white;
     border: none;
     padding: 9px 9px;
-
 }
 
 .c-button {
     background: rgb(36, 230, 42);
-    background: linear-gradient(90deg, rgb(36, 230, 42) 40%, rgba(4, 214, 107, 1) 85%);
+    background: linear-gradient(90deg, rgba(4, 214, 107, 1) 85%, rgba(4, 214, 107, 1) 85%);
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     border-radius: 0px 20px 20px 0px;
     color: white;
     border: none;
     padding: 9px 9px;
     margin: 0px 2px;
-
 }
 
 .dark-light {
@@ -126,8 +115,6 @@ button:focus,
     color: white;
     border: none;
     padding: 9px 10px;
-
-
 }
 
 #light-mode-toggle {
@@ -138,8 +125,6 @@ button:focus,
     color: white;
     border: none;
     padding: 9px 10px;
-
-
 }
 
 .c-button:active,
@@ -156,10 +141,7 @@ nav h3 {
 }
 
 #cityName {
-
     margin: 2px 0px 0px 0px;
-
-
 }
 
 #cityInput {
@@ -168,7 +150,26 @@ nav h3 {
     border: 1px solid rgba(0, 0, 0, 0.469);
     padding: 3px 10px;
     border-right: 0px;
+}
 
+.cityList {
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 52vh;
+}
+
+#cityList::-webkit-scroll {
+    background-color: rgb(255, 255, 255) !important;
+    height: 20px !important;
+    width: 20px;
+
+
+}
+
+#cityList::-webkit-scrollbar-thumb {
+    background-color: white !important;
+    height: 12px;
+    width: 12px;
 }
 
 #submitBtn {
@@ -190,6 +191,17 @@ nav h3 {
     border: 0px;
 }
 
+#suggestions {
+    width: fit-content;
+}
+
+#suggestions .list-group-item {
+    font-size: small;
+    color: black;
+    padding: 5px 10px;
+
+}
+
 .bi-bookmark-plus {
     font-size: 30px;
 }
@@ -201,7 +213,7 @@ nav h3 {
 
 .bi-bookmark-star-fill {
     font-size: 30px;
-    color: #ffcc00; 
+    color: #ffcc00;
 }
 
 .bi-bookmark-star-fill:hover {
@@ -248,39 +260,50 @@ nav h3 {
     border-radius: 10px;
     cursor: pointer;
     padding-top: 1px;
+
+
+
 }
 
 tbody {
     align-items: center;
     padding: 0px;
-    
 }
 
-.fav {
-    
-}
+.fav {}
 
 .favorite-city {
-  margin: 5px;
-  list-style: none;
-  padding: 15px;
-  border-radius: 10px;  
-  color: white;
-  display: flex;
-  align-items: center;
-  box-shadow: rgba(26, 26, 27, 0.325) 0px 7px 29px 0px;
+    margin: 5px;
+    list-style: none;
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
 }
 
-.favorite-city p ,h4 {
-  margin: 0px;
+.favorite-city p,
+h4 {
+    margin: 0px;
+}
 
-  }
+.temp-group {
+    margin-left: auto;
+}
+
+.hl-group {
+    margin-left: auto;
+    text-align: right;
+    display: flex;
+    font-size: 15px;
+}
+
 
 .temp {
-   margin-left: auto; 
-   text-align: right;
-   font-size: 28px;
-   
+    margin-left: auto;
+    text-align: right;
+    font-size: 28px;
+
 }
 
 .display-section {
@@ -343,30 +366,71 @@ body i {
     text-align: center;
 }
 
-.Clear,
-#Clear {
-    background: rgb(9, 188, 223);
-    background: linear-gradient(0deg, rgb(135, 213, 255) 30%, rgb(60, 161, 255) 90%);
+
+.snow,
+#snow,
+#light\ snow {
+    background: rgb(235, 235, 235);
+    /* background: linear-gradient(0deg, rgb(125, 233, 255) 10%, rgb(195, 203, 205) 80%)! */
+    background-image: url(/assets/images/2eSd.gif) !important;
 }
 
-.Clouds,
-#Clouds {
+.clear.sky,
+#clear\ sky {
+    background: linear-gradient(350deg, rgb(117, 200, 255) 40%, rgb(33, 159, 249) 90%);
+
+}
+
+.few.clouds,
+#few\ clouds {
+    background: linear-gradient(5deg, rgb(104, 187, 246) 40%, rgb(226, 227, 227) 98%);
+}
+
+.scattered.clouds,
+#scattered\ clouds {
+    background: rgb(221, 221, 221);
+    background: linear-gradient(200deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    animation: gradientAnimation 23s linear infinite;
+}
+
+
+
+.broken.clouds,
+#broken\ clouds {
     background: rgb(162, 162, 162);
-    background: linear-gradient(0deg, rgb(135, 135, 135) 30%, rgb(187, 187, 187) 95%);
+    background: linear-gradient(160deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    animation: gradientAnimationReverse 20s linear infinite;
 }
 
 
-.Rain,
-#Rain {
-    background: rgb(64, 64, 64);
-    background: linear-gradient(0deg, rgb(170, 180, 203) 30%, rgb(107, 122, 149) 80%);
+
+.overcast.clouds,
+#overcast\ clouds {
+    background: rgb(162, 162, 162);
+    background: linear-gradient(0deg, rgb(135, 135, 135) 30%, rgb(207, 207, 207) 95%);
 }
 
-.Snow,
-#Snow {
-    background: rgb(59, 219, 237);
-    background: linear-gradient(0deg, rgb(125, 233, 255) 10%, rgb(195, 203, 205) 80%);
+.light.rain,
+#light\ rain {
+    background: rgb(86, 131, 168);
+    /* background: linear-gradient(0deg, rgb(170, 180, 203) 30%, rgb(107, 122, 149) 80%); */
+    background-image: url(/assets/images/9d9a23a4d99de3a7fae1a34e5972a4b7.gif);
 }
+
+.moderate.rain,
+#moderate\ rain {
+    background: rgb(86, 131, 168);
+
+    background-image: url(/assets/images/9d9a23a4d99de3a7fae1a34e5972a4b7.gif);
+}
+
+.heavy.intensity.rain,
+#heavy\ intensity\ rain {
+    background: rgb(86, 131, 168);
+    background-image: url(/assets//images/clipart-rain-gif-transparent-12.gif);
+}
+
+
 
 .col-lg-0 p {
     margin: 0px 0px 6px;
@@ -384,11 +448,12 @@ footer {
     background: linear-gradient(170deg, rgba(44, 122, 240, 1) 45%, rgba(4, 214, 107, 1) 95%);
     color: #fff;
     text-align: left;
-    padding: 5px 0;
+    padding: 5px;
     width: 100%;
     position: absolute;
     bottom: 0;
-    
+
+
 }
 
 .foot {
@@ -414,3 +479,815 @@ footer {
         zoom: 110%;
     }
 } */
+
+@keyframes gradientAnimation {
+    0% {
+        background: linear-gradient(200deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    1% {
+        background: linear-gradient(199deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    2% {
+        background: linear-gradient(198deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    3% {
+        background: linear-gradient(197deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    4% {
+        background: linear-gradient(196deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    5% {
+        background: linear-gradient(195deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    6% {
+        background: linear-gradient(194deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    7% {
+        background: linear-gradient(193deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    8% {
+        background: linear-gradient(192deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    9% {
+        background: linear-gradient(191deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    10% {
+        background: linear-gradient(190deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    11% {
+        background: linear-gradient(189deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    12% {
+        background: linear-gradient(188deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    13% {
+        background: linear-gradient(187deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    14% {
+        background: linear-gradient(186deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    15% {
+        background: linear-gradient(185deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    16% {
+        background: linear-gradient(184deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    17% {
+        background: linear-gradient(183deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    18% {
+        background: linear-gradient(182deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    19% {
+        background: linear-gradient(181deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    20% {
+        background: linear-gradient(180deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    21% {
+        background: linear-gradient(179deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    22% {
+        background: linear-gradient(178deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    23% {
+        background: linear-gradient(177deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    24% {
+        background: linear-gradient(176deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    25% {
+        background: linear-gradient(175deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    26% {
+        background: linear-gradient(174deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    27% {
+        background: linear-gradient(173deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    28% {
+        background: linear-gradient(172deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    29% {
+        background: linear-gradient(171deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    30% {
+        background: linear-gradient(170deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    31% {
+        background: linear-gradient(169deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    32% {
+        background: linear-gradient(168deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    33% {
+        background: linear-gradient(167deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    34% {
+        background: linear-gradient(166deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    35% {
+        background: linear-gradient(165deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    36% {
+        background: linear-gradient(164deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    37% {
+        background: linear-gradient(163deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    38% {
+        background: linear-gradient(162deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    39% {
+        background: linear-gradient(161deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    40% {
+        background: linear-gradient(160deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    41% {
+        background: linear-gradient(159deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    42% {
+        background: linear-gradient(158deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    43% {
+        background: linear-gradient(157deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    44% {
+        background: linear-gradient(156deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    45% {
+        background: linear-gradient(155deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    46% {
+        background: linear-gradient(156deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    47% {
+        background: linear-gradient(157deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    48% {
+        background: linear-gradient(158deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    49% {
+        background: linear-gradient(159deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    50% {
+        background: linear-gradient(160deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    51% {
+        background: linear-gradient(161deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    52% {
+        background: linear-gradient(162deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    53% {
+        background: linear-gradient(163deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    54% {
+        background: linear-gradient(164deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    55% {
+        background: linear-gradient(165deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    56% {
+        background: linear-gradient(166deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    57% {
+        background: linear-gradient(167deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    58% {
+        background: linear-gradient(168deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    59% {
+        background: linear-gradient(169deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    60% {
+        background: linear-gradient(170deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    61% {
+        background: linear-gradient(171deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    62% {
+        background: linear-gradient(172deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    63% {
+        background: linear-gradient(173deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    64% {
+        background: linear-gradient(174deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    65% {
+        background: linear-gradient(175deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    66% {
+        background: linear-gradient(176deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    67% {
+        background: linear-gradient(177deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    68% {
+        background: linear-gradient(178deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    69% {
+        background: linear-gradient(179deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    70% {
+        background: linear-gradient(180deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    71% {
+        background: linear-gradient(181deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    72% {
+        background: linear-gradient(182deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    73% {
+        background: linear-gradient(183deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    74% {
+        background: linear-gradient(184deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    75% {
+        background: linear-gradient(185deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    76% {
+        background: linear-gradient(186deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    77% {
+        background: linear-gradient(187deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    78% {
+        background: linear-gradient(188deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    79% {
+        background: linear-gradient(189deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    80% {
+        background: linear-gradient(190deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    81% {
+        background: linear-gradient(191deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    82% {
+        background: linear-gradient(192deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    83% {
+        background: linear-gradient(193deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    84% {
+        background: linear-gradient(194deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    85% {
+        background: linear-gradient(195deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    86% {
+        background: linear-gradient(196deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    87% {
+        background: linear-gradient(197deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    88% {
+        background: linear-gradient(198deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    89% {
+        background: linear-gradient(199deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    90% {
+        background: linear-gradient(200deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    91% {
+        background: linear-gradient(201deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    92% {
+        background: linear-gradient(202deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    93% {
+        background: linear-gradient(203deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    94% {
+        background: linear-gradient(204deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    95% {
+        background: linear-gradient(205deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    96% {
+        background: linear-gradient(206deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    97% {
+        background: linear-gradient(207deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    98% {
+        background: linear-gradient(208deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    99% {
+        background: linear-gradient(209deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+
+    100% {
+        background: linear-gradient(210deg, rgb(236, 236, 236) 20%, rgb(149, 209, 255) 40%, rgb(104, 187, 246) 69%);
+    }
+}
+
+@keyframes gradientAnimationReverse {
+    0% {
+        background: linear-gradient(160deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    1% {
+        background: linear-gradient(161deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    2% {
+        background: linear-gradient(162deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    3% {
+        background: linear-gradient(163deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    4% {
+        background: linear-gradient(164deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    5% {
+        background: linear-gradient(165deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    6% {
+        background: linear-gradient(166deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    7% {
+        background: linear-gradient(167deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    8% {
+        background: linear-gradient(168deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    9% {
+        background: linear-gradient(169deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    10% {
+        background: linear-gradient(170deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    11% {
+        background: linear-gradient(171deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    12% {
+        background: linear-gradient(172deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    13% {
+        background: linear-gradient(173deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    14% {
+        background: linear-gradient(174deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    15% {
+        background: linear-gradient(175deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    16% {
+        background: linear-gradient(176deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    17% {
+        background: linear-gradient(177deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    18% {
+        background: linear-gradient(178deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    19% {
+        background: linear-gradient(179deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    20% {
+        background: linear-gradient(180deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    21% {
+        background: linear-gradient(181deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    22% {
+        background: linear-gradient(182deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    23% {
+        background: linear-gradient(183deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    24% {
+        background: linear-gradient(184deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    25% {
+        background: linear-gradient(185deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    26% {
+        background: linear-gradient(186deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    27% {
+        background: linear-gradient(187deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    28% {
+        background: linear-gradient(188deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    29% {
+        background: linear-gradient(189deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    30% {
+        background: linear-gradient(190deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    31% {
+        background: linear-gradient(191deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    32% {
+        background: linear-gradient(192deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    33% {
+        background: linear-gradient(193deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    34% {
+        background: linear-gradient(194deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    35% {
+        background: linear-gradient(195deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    36% {
+        background: linear-gradient(196deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    37% {
+        background: linear-gradient(197deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    38% {
+        background: linear-gradient(198deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    39% {
+        background: linear-gradient(199deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    40% {
+        background: linear-gradient(200deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    41% {
+        background: linear-gradient(201deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    42% {
+        background: linear-gradient(202deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    43% {
+        background: linear-gradient(203deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    44% {
+        background: linear-gradient(204deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    45% {
+        background: linear-gradient(205deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    46% {
+        background: linear-gradient(206deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    47% {
+        background: linear-gradient(207deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    48% {
+        background: linear-gradient(208deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    49% {
+        background: linear-gradient(209deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    50% {
+        background: linear-gradient(210deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    51% {
+        background: linear-gradient(209deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    52% {
+        background: linear-gradient(208deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    53% {
+        background: linear-gradient(207deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    54% {
+        background: linear-gradient(206deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    55% {
+        background: linear-gradient(205deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    56% {
+        background: linear-gradient(204deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    57% {
+        background: linear-gradient(203deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    58% {
+        background: linear-gradient(202deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    59% {
+        background: linear-gradient(201deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    60% {
+        background: linear-gradient(200deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    61% {
+        background: linear-gradient(199deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    62% {
+        background: linear-gradient(198deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    63% {
+        background: linear-gradient(197deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    64% {
+        background: linear-gradient(196deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    65% {
+        background: linear-gradient(195deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    66% {
+        background: linear-gradient(194deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    67% {
+        background: linear-gradient(193deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    68% {
+        background: linear-gradient(192deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    69% {
+        background: linear-gradient(191deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    70% {
+        background: linear-gradient(190deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    71% {
+        background: linear-gradient(189deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    72% {
+        background: linear-gradient(188deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    73% {
+        background: linear-gradient(187deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    74% {
+        background: linear-gradient(186deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    75% {
+        background: linear-gradient(185deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    76% {
+        background: linear-gradient(184deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    77% {
+        background: linear-gradient(183deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    78% {
+        background: linear-gradient(182deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    79% {
+        background: linear-gradient(181deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    80% {
+        background: linear-gradient(180deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    81% {
+        background: linear-gradient(179deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    82% {
+        background: linear-gradient(178deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    83% {
+        background: linear-gradient(177deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    84% {
+        background: linear-gradient(176deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    85% {
+        background: linear-gradient(175deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    86% {
+        background: linear-gradient(174deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    87% {
+        background: linear-gradient(173deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    88% {
+        background: linear-gradient(172deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    89% {
+        background: linear-gradient(171deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    90% {
+        background: linear-gradient(170deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    91% {
+        background: linear-gradient(169deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    92% {
+        background: linear-gradient(168deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    93% {
+        background: linear-gradient(167deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    94% {
+        background: linear-gradient(166deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    95% {
+        background: linear-gradient(165deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    96% {
+        background: linear-gradient(164deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    97% {
+        background: linear-gradient(163deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    98% {
+        background: linear-gradient(162deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    99% {
+        background: linear-gradient(161deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+
+    100% {
+        background: linear-gradient(160deg, rgb(232, 232, 232) 15%, rgb(142, 186, 220) 70%);
+    }
+}
