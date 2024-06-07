@@ -367,13 +367,21 @@ body i {
 }
 
 
-.snow,
-#snow,
-#light\ snow {
+
+#light\ snow,
+.light.snow {
     background: rgb(160, 209, 214);
     background-color: linear-gradient(0deg, rgb(125, 233, 255) 10%, rgb(195, 203, 205) 80%);
-    background-image: url(/assets/images/2eSd.gif) !important;
-    
+    background-image: url(https://i.gifer.com/3nRI.gif) !important;
+
+}
+
+.snow,
+#snow {
+    background: rgb(160, 209, 214);
+    background-color: linear-gradient(0deg, rgb(125, 233, 255) 10%, rgb(195, 203, 205) 80%);
+    background-image: url(https://i.gifer.com/5WWU.gif) !important;
+
 }
 
 .clear.sky,
