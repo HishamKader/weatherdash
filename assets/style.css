@@ -270,7 +270,7 @@ tbody {
     padding: 0px;
 }
 
-.fav {}
+/* .fav {} */
 
 .favorite-city {
     margin: 5px;
@@ -370,9 +370,10 @@ body i {
 .snow,
 #snow,
 #light\ snow {
-    background: rgb(235, 235, 235);
-    /* background: linear-gradient(0deg, rgb(125, 233, 255) 10%, rgb(195, 203, 205) 80%)! */
+    background: rgb(160, 209, 214);
+    background-color: linear-gradient(0deg, rgb(125, 233, 255) 10%, rgb(195, 203, 205) 80%);
     background-image: url(/assets/images/2eSd.gif) !important;
+    
 }
 
 .clear.sky,
@@ -414,20 +415,20 @@ body i {
 #light\ rain {
     background: rgb(86, 131, 168);
     /* background: linear-gradient(0deg, rgb(170, 180, 203) 30%, rgb(107, 122, 149) 80%); */
-    background-image: url(/assets/images/9d9a23a4d99de3a7fae1a34e5972a4b7.gif);
+    background-image: url(images/9d9a23a4d99de3a7fae1a34e5972a4b7.gif);
 }
 
 .moderate.rain,
 #moderate\ rain {
     background: rgb(86, 131, 168);
 
-    background-image: url(/assets/images/9d9a23a4d99de3a7fae1a34e5972a4b7.gif);
+    background-image: url(images/9d9a23a4d99de3a7fae1a34e5972a4b7.gif);
 }
 
 .heavy.intensity.rain,
 #heavy\ intensity\ rain {
     background: rgb(86, 131, 168);
-    background-image: url(/assets//images/clipart-rain-gif-transparent-12.gif);
+    background-image: url(images/clipart-rain-gif-transparent-12.gif);
 }
 
 
