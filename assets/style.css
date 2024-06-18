@@ -306,7 +306,7 @@ h4 {
     border-radius: 15px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
     color: white;
-    background-color: #343a40;
+    background-color: #76b2ee;
 }
 
 #temperature {
@@ -466,20 +466,25 @@ footer {
 
 .cityList::-webkit-scrollbar {
     width: 12px; /* Adjust the width as needed */
-    height: 12px; /* Adjust the height as needed for horizontal scrollbars */
+    height: fit-content; /* Adjust the height as needed for horizontal scrollbars */
+    overflow-y: auto;
     
 }
 
-/* Background of the scrollbar track */
-.cityList::-webkit-scrollbar-track {
-    background: #5d5d5d; /* Color of the track */
-    border-radius: 10px; /* Optional: round the track corners */
-}
+
+/* .cityList::-webkit-scrollbar-track {
+    background: #5d5d5d; 
+    border-radius: 10px; 
+    overflow-y: auto;
+   
+} */
 
 /* Background of the scrollbar thumb */
-::-webkit-scrollbar-thumb {
-    background: #bcbcbc; /* Color of the thumb */
+.cityList::-webkit-scrollbar-thumb {
+    background: #d4d4d4; /* Color of the thumb */
     border-radius: 10px; /* Optional: round the thumb corners */
+   
+    overflow-y: auto;
    
    
 }

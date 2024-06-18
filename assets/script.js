@@ -18,7 +18,7 @@ if (!isFahrenheit) {
     unit2 = "m/s";
 }
 
-setWeather("New Jersey")
+
 
 $(".units").on("click", "button", function () {
     unitSelected = $(this).attr("value");
