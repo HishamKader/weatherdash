@@ -18,7 +18,7 @@ if (!isFahrenheit) {
     unit2 = "m/s";
 }
 
-
+setWeather("New Jersey")
 
 $(".units").on("click", "button", function () {
     unitSelected = $(this).attr("value");
@@ -629,7 +629,7 @@ $(document).ready(function () {
 
     // Function to add an empty row if no favorites are added
     function addEmptyRow() {
-        var emptyRow = "<div id='no-favorites'>No favorites</div>";
+        var emptyRow = "<div id='no-favorites'>No favorite locations added</div>";
         var $cityList = $("#cityList");
 
         if ($cityList.children().length === 0) {

@@ -158,19 +158,7 @@ nav h3 {
     height: 52vh;
 }
 
-#cityList::-webkit-scroll {
-    background-color: rgb(255, 255, 255) !important;
-    height: 20px !important;
-    width: 20px;
 
-
-}
-
-#cityList::-webkit-scrollbar-thumb {
-    background-color: white !important;
-    height: 12px;
-    width: 12px;
-}
 
 #submitBtn {
     text-align: center;
@@ -184,7 +172,14 @@ nav h3 {
     color: rgb(232, 80, 232);
     font-size: 23px;
     margin: 10px;
+    transition: 200ms;
 }
+
+.bi-cursor-fill:hover {
+    color:rgb(247, 133, 247);
+    transition: 200ms;
+}
+
 
 #localBtn {
     background: transparent;
@@ -467,6 +462,36 @@ footer {
 
 .foot {
     margin: 10px;
+}
+
+.cityList::-webkit-scrollbar {
+    width: 12px; /* Adjust the width as needed */
+    height: 12px; /* Adjust the height as needed for horizontal scrollbars */
+    
+}
+
+/* Background of the scrollbar track */
+.cityList::-webkit-scrollbar-track {
+    background: #5d5d5d; /* Color of the track */
+    border-radius: 10px; /* Optional: round the track corners */
+}
+
+/* Background of the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+    background: #bcbcbc; /* Color of the thumb */
+    border-radius: 10px; /* Optional: round the thumb corners */
+   
+   
+}
+
+/* Hover effect for the scrollbar thumb */
+.cityList::-webkit-scrollbar-thumb:hover {
+    background: #a0a0a0; /* Darker color on hover */
+}
+
+/* Optional: corner of the scrollbar (appears in the bottom-right corner when both vertical and horizontal scrollbars are present) */
+.cityList::-webkit-scrollbar-corner {
+    background: #f1f1f1;
 }
 
 @media screen and (max-width: 767px) {
