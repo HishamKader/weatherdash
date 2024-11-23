@@ -186,6 +186,14 @@ nav h3 {
     border: 0px;
 }
 
+.form-inline {
+    justify-content: center;
+}
+
+.ml-2 {
+    display: contents;
+}
+
 #suggestions {
     width: fit-content;
 }
@@ -363,6 +371,7 @@ body i {
 
 
 
+
 #light\ snow,
 .light.snow {
     background: rgb(200, 219, 221);
@@ -465,36 +474,28 @@ footer {
 }
 
 .cityList::-webkit-scrollbar {
-    width: 12px; /* Adjust the width as needed */
-    height: fit-content; /* Adjust the height as needed for horizontal scrollbars */
+    width: 12px;
+    height: fit-content;
     overflow-y: auto;
     
 }
 
 
-/* .cityList::-webkit-scrollbar-track {
-    background: #5d5d5d; 
-    border-radius: 10px; 
-    overflow-y: auto;
-   
-} */
-
-/* Background of the scrollbar thumb */
 .cityList::-webkit-scrollbar-thumb {
-    background: #d4d4d4; /* Color of the thumb */
-    border-radius: 10px; /* Optional: round the thumb corners */
+    background: #d4d4d4; 
+    border-radius: 10px;
    
     overflow-y: auto;
    
    
 }
 
-/* Hover effect for the scrollbar thumb */
+
 .cityList::-webkit-scrollbar-thumb:hover {
-    background: #a0a0a0; /* Darker color on hover */
+    background: #a0a0a0;
 }
 
-/* Optional: corner of the scrollbar (appears in the bottom-right corner when both vertical and horizontal scrollbars are present) */
+
 .cityList::-webkit-scrollbar-corner {
     background: #f1f1f1;
 }
